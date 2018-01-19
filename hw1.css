@@ -1,25 +1,39 @@
-.sansserif {
-    font-family: sans-serif;
-/*}
-.img1 {
 
- position: fixed;
-    bottom: 1000000;
-    right: 100;
+
+
+body {
+    background-image: url("./background.jpeg");
+    
 }
-.img2 {
-	 position: fixed;
-    bottom: ;
-    right: 75;
+
+.style1 {
+    font-family: sans-serif;
+    width:85%;
+    margin:auto;
+    background-color: rgba(255, 255, 255, .4);
+    
+    padding: 15px;
 }
-.img3{
-	 position: fixed;
-    bottom: 75;
-    right: 75;
+
+.style1 > a, a:visited, a:link, a:active, a:hover {
+    
+    font-weight: bold;
 }
-.img4{
-	 position: fixed;
-    bottom: 75;
-    right: 75;
+.logos {
+    background-color: white;
+    width: 150px;
+    padding: 15px;
+    margin: 15px;
+    display: inline-block;
+
 }
-*/
+.logo-img {
+    width: 100%;
+}
+
+.pics {
+    width: 30px;
+}
+.fontsize {
+    font-size: 40px;
+}

@@ -1,21 +1,127 @@
 <!DOCTYPE html>
 <html>
-<body background="background.jpeg">
+
 <head>
 	<title>
 	
 	</title>
 	<link rel="stylesheet" type="text/css" href="hw1.css">
+	<script type="text/javascript">
+		
+
+		var hello = "hello";
+		console.log(typeof hello);
+		var sum = 6 * hello;
+		var myarr = [1,2,"hello"]
+		
+		var add = 0;
+
+		console.dir(Object.keys(myarr));
+		console.log(myarr);
+		var popped = myarr.slice(0,-1);
+		console.log(myarr);
+		console.log(popped);
+		window.onload = clocktime;
+
+		function del(){
+			var element = (document.getElementById("container"));
+			console.dir(element);
+			element.innerHTML = "";
+			console.dir(element);
+		}
+
+		function add(){
+			var element = (document.getElementById("container2"));
+			console.dir(element);
+			element.innerHTML = "This is a test.";
+			console.dir(element);
+
+		}
+		function change(){
+			var x = (document.getElementById("container"));
+			console.dir(x);
+			img = 'logo-img';
+			x.innerHTML = "<a href='./hw1-2.html'><img class='" + img + "' src='bitcoinlogo.png' width='155'></a>";
+			console.dir(x);
+		}
+		function size(){
+			var pics = (document.getElementById("pics"));
+			img ='pics';
+			//pics.innerHTML = "<a href='./hw1-2.html'><img class='"+ img +"' src='bitcoinlogo.png' width='155'></a>";
+			pics.className = img;
+			console.dir(pics);
+		}
+		function time() {
+			var element = (document.getElementById("fontsize"));
+			console.dir(element);
+			add = add + 1;
+			element.innerHTML = add;
+			console.dir(element);
+		}
+		function start(){
+			var count = window.setInterval(function(){
+			  add = add - 1;
+			  if (add <= 0) {
+			     clearInterval(count);
+			  }
+				var element = (document.getElementById("fontsize"));
+				element.innerHTML = add;
+			}, 1000)
+		}
+
+		function whenIClick(){
+			window.setTimeout(time, 500)
+		}
+		var timer;
+
+		function clocktime(){
+		
+			var x = (document.getElementById("clocktime"));
+			console.dir(x);
+			timer = window.setInterval(function(){
+				var today = new Date();
+				var timenow = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+				x.innerHTML = timenow;
+			}, 1000)
+		}
+
+		
+		
+
+
+	</script>
 </head>
 <body>
-		<center><h1 class= "sansserif" style="color:white">Different Types of Cryptocurrency</h1>
-		<p class="sansserif" style="color:white"> Here are some common examples:</p>
-<a href="./hw1-2.html"><img class="img1" src="bitcoinlogo.png" width="155"></a>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-<a href="./hw1-3.html"><img class="img2" src="Ripplelogo.png" width="300"></a>
-<p>
+	<div id="container" class="style1">
+		<center><h1> Different Types of Cryptocurrency</h1>
+		<p> Here are some common examples:</p>
+		<div class="logos">
+			<a href="./hw1-2.html"><img id="pics" class="logo-img" src="bitcoinlogo.png" width="155"></a>
+		</div>
 
-<a href="./hw1-5.html"><img class="img4" src="ethereumlogo.png" width="320" height="px"220></a>
-</p>
+		<div class="logos">
+			<a href="./hw1-3.html"><img class="logo-img" src="Ripplelogo.png" width="300"></a>
+		</div>
+
+		<div class="logos">
+			<a href="./hw1-5.html"><img class="logo-img" src="ethereumlogo.png" width="320" height="px"220></a>
+		</div>
+		<div id="container2"></div>
+		<div id="container3"></div>
+		<div id="fontsize" class="fontsize"> 0 </div>
+		<div id="clocktime"></div>
+
+		<script>
+		
+		</script>
+</div>
+		<button onclick='del()'>Delete</button>
+		<button onclick='add()'>add</button>
+		<button onclick='change()'>change</button>
+		<button onclick="size()">size</button>
+		<button onclick="whenIClick()">click me to set time</button>
+		<button onclick="start()">start timer</button>
+		<button onclick="clearInterval(timer)">stop clock</button>
+		<button onclick="clocktime()">start clock</button> 
 </body>
 </html>
