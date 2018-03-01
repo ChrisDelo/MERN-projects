@@ -77,28 +77,220 @@ $(document).ready(function(){
 		 console.log("imputed sol only:"+onlySol);
 	});
 
-		// $("#sol").keyup(function(){
-		// 	 solNumber = $("#sol").val();
-		// 	 console.log("imputed sol:"+solNumber);
-		// 	 	//going to put in an alert if the data type is not an int
+		$("#sol").keyup(function(){
+			 solNumber = $("#sol").val();
+			 console.log("imputed sol:"+solNumber);
+			 	//going to put in an alert if the data type is not an int
 
-		// })
-		// $('#submitJustSol').click(function(){
-		// 	console.log("only sol:"+onlySol);
-		// 	var solOnlyNasaAPI="https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ";
-		// });
-		// var url = new Array("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=FHAZ&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=RHAZ&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MAST&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=CHEMCAM&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MAHLI&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MARDI&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=NAVCAM&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ");
-		// var cams = new Array("fhaz", "mast", "chemcam", "mahli", "mardi", "navcam");
-		// if(url.length ==cams.length){
-		// 	console.log("url and cams length is good");
-		// }  
-		// else{
-		// 	console.log("url and cams length is bad")
-		// }
-		// for(var i = 0; i < url.length; i++){
-		// $("#cameraURL").html("<button id='"+cams[i]+"1'>"+cams[i]+"</button>");
+		})
+		$('#submitJustSol').click(function(){
+			console.log("only sol:"+onlySol);
+			var solOnlyNasaAPI="https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ";
+		});
+		var urlArray = ["https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=FHAZ&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ",
+					"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=RHAZ&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ",
+					"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MAST&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ",
+					"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=CHEMCAM&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ",
+					"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MAHLI&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ",
+					"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MARDI&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ",
+					"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=NAVCAM&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ"];
+		
+		var cams = ["fhaz", "rhaz", "mast", "chemcam", "mahli", "mardi", "navcam"];
+		if(urlArray.length ==cams.length){
+			console.log("url and cams length is good");
+		}  
+		else{
+			console.log("url and cams length is bad")
+		}
+		for(var i = 0; i < urlArray.length; i++){
+			console.log(cams)
+			$("#cameraURL").append("<button id='"+cams[i]+"1'>"+cams[i]+"</button>");
 
-	//	$("'#'+cams[i]).click(function(){
-// }
+		}
+		$("#fhaz1").click(function(){
+			$.getJSON(urlArray[0], function(data){
+        		console.dir(data);  //idk if this works
+        		console.log("fhaz");
+        		data = data;
+        		var j = data.photos.length;
+        		if (j==0) {
+        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
+        		}
+        		else {
+		       		for(var i=0; i<data.photos.length; i++){
+		       			console.log(data.photos[i]);
+		       			if(i==0){
+		       				$('#bigPic').html("<div><button class='imgs'><img src="+data.photos[i].img_src+"></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       			}
 
-});		
+		       			$('#pics').append("<div><button class='imgs'><img class='smallpics'src="+data.photos[i].img_src+" height=150px></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       		}
+	       		$('.smallpics').each(function(index){
+					$(this).click(function(){
+						$('#bigPic').html("<div><button><img src="+this.src+"></button>");
+					})
+	       		})
+	       	}
+    	});
+	});
+		})
+		$("#rhaz1").click(function(){
+			$.getJSON(urlArray[1], function(data){
+        		console.dir(data);  //idk if this works
+        		console.log("rhaz")
+        		data = data;
+        		var j = data.photos.length;
+        		if (j==0) {
+        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
+        		}
+        		else {
+		       		for(var i=0; i<data.photos.length; i++){
+		       			console.log(data.photos[i]);
+		       			if(i==0){
+		       				$('#bigPic').html("<div><button class='imgs'><img src="+data.photos[i].img_src+"></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       			}
+
+		       			$('#pics').append("<div><button class='imgs'><img class='smallpics'src="+data.photos[i].img_src+" height=150px></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       		}
+	       		$('.smallpics').each(function(index){
+					$(this).click(function(){
+						$('#bigPic').html("<div><button><img src="+this.src+"></button>");
+					})
+	       		})
+	       	}
+    	});
+	});
+	
+		$("#mast1").click(function(){
+			$.getJSON(urlArray[2], function(data){
+        		console.dir(data);  //idk if this works
+        		console.log("mast")
+        		data = data;
+        		var j = data.photos.length;
+        		if (j==0) {
+        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
+        		}
+        		else {
+		       		for(var i=0; i<data.photos.length; i++){
+		       			console.log(data.photos[i]);
+		       			if(i==0){
+		       				$('#bigPic').html("<div><button class='imgs'><img src="+data.photos[i].img_src+"></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       			}
+
+		       			$('#pics').append("<div><button class='imgs'><img class='smallpics'src="+data.photos[i].img_src+" height=150px></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       		}
+	       		$('.smallpics').each(function(index){
+					$(this).click(function(){
+						$('#bigPic').html("<div><button><img src="+this.src+"></button>");
+					})
+	       		})
+	       	}
+    	});
+	});
+		
+		$("#chemcam1").click(function(){
+			$.getJSON(urlArray[3], function(data){
+        		console.dir(data);  //idk if this works
+        		data = data;
+        		var j = data.photos.length;
+        		if (j==0) {
+        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
+        		}
+        		else {
+		       		for(var i=0; i<data.photos.length; i++){
+		       			console.log(data.photos[i]);
+		       			if(i==0){
+		       				$('#bigPic').html("<div><button class='imgs'><img src="+data.photos[i].img_src+"></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       			}
+
+		       			$('#pics').append("<div><button class='imgs'><img class='smallpics'src="+data.photos[i].img_src+" height=150px></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       		}
+	       		$('.smallpics').each(function(index){
+					$(this).click(function(){
+						$('#bigPic').html("<div><button><img src="+this.src+"></button>");
+					})
+	       		})
+	       	}
+    	});
+	});
+	
+		$("#mahli").click(function(){
+			$.getJSON(urlArray[4], function(data){
+        		console.dir(data);  //idk if this works
+        		data = data;
+        		var j = data.photos.length;
+        		if (j==0) {
+        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
+        		}
+        		else {
+		       		for(var i=0; i<data.photos.length; i++){
+		       			console.log(data.photos[i]);
+		       			if(i==0){
+		       				$('#bigPic').html("<div><button class='imgs'><img src="+data.photos[i].img_src+"></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       			}
+
+		       			$('#pics').append("<div><button class='imgs'><img class='smallpics'src="+data.photos[i].img_src+" height=150px></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       		}
+	       		$('.smallpics').each(function(index){
+					$(this).click(function(){
+						$('#bigPic').html("<div><button><img src="+this.src+"></button>");
+					})
+	       		})
+	       	}
+    	});
+	});
+		
+		$("#mardi").click(function(){
+			$.getJSON(urlArray[5], function(data){
+        		console.dir(data);  //idk if this works
+        		data = data;
+        		var j = data.photos.length;
+        		if (j==0) {
+        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
+        		}
+        		else {
+		       		for(var i=0; i<data.photos.length; i++){
+		       			console.log(data.photos[i]);
+		       			if(i==0){
+		       				$('#bigPic').html("<div><button class='imgs'><img src="+data.photos[i].img_src+"></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       			}
+
+		       			$('#pics').append("<div><button class='imgs'><img class='smallpics'src="+data.photos[i].img_src+" height=150px></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       		}
+	       		$('.smallpics').each(function(index){
+					$(this).click(function(){
+						$('#bigPic').html("<div><button><img src="+this.src+"></button>");
+					})
+	       		})
+	       	}
+    	});
+	});
+	
+		$("#navcam").click(function(){
+			$.getJSON(urlArray[6], function(data){
+        		console.dir(data);  //idk if this works
+        		data = data;
+        		var j = data.photos.length;
+        		if (j==0) {
+        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
+        		}
+        		else {
+		       		for(var i=0; i<data.photos.length; i++){
+		       			console.log(data.photos[i]);
+		       			if(i==0){
+		       				$('#bigPic').html("<div><button class='imgs'><img src="+data.photos[i].img_src+"></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       			}
+
+		       			$('#pics').append("<div><button class='imgs'><img class='smallpics'src="+data.photos[i].img_src+" height=150px></button><p>"+data.photos[i].earth_date+"</p></div>");
+		       		}
+	       		$('.smallpics').each(function(index){
+					$(this).click(function(){
+						$('#bigPic').html("<div><button><img src="+this.src+"></button>");
+					})
+	       		})
+	       	}
+    	});
+	});
+
+
+		
