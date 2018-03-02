@@ -108,14 +108,14 @@ $(document).ready(function(){
 
 		}
 		$("#fhaz1").click(function(){
-			$.getJSON(urlArray[0], function(data){
+			$.getJSON("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=FHAZ&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", function(data){
         		console.dir(data);  //idk if this works
         		console.log("fhaz");
         		data = data;
         		var j = data.photos.length;
-        		if (j==0) {
-        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
-        		}
+        		 if (j==0) {
+        		 	$("#pics").html("Rover did not take pictures with fhaz camera on sol "+onlySol+". Please pick a different sol.")
+        		 }
         		else {
 		       		for(var i=0; i<data.photos.length; i++){
 		       			console.log(data.photos[i]);
@@ -133,16 +133,16 @@ $(document).ready(function(){
 	       	}
     	});
 	});
-		})
+		
 		$("#rhaz1").click(function(){
-			$.getJSON(urlArray[1], function(data){
+			$.getJSON("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=RHAZ&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", function(data){
         		console.dir(data);  //idk if this works
         		console.log("rhaz")
         		data = data;
         		var j = data.photos.length;
-        		if (j==0) {
-        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
-        		}
+        		 if (j==0) {
+        		 	$("#pics").html("Rover did not take pictures with rhaz camera on sol "+onlySol+". Please pick a different sol.")
+        		 }
         		else {
 		       		for(var i=0; i<data.photos.length; i++){
 		       			console.log(data.photos[i]);
@@ -162,14 +162,14 @@ $(document).ready(function(){
 	});
 	
 		$("#mast1").click(function(){
-			$.getJSON(urlArray[2], function(data){
+			$.getJSON("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MAST&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", function(data){
         		console.dir(data);  //idk if this works
         		console.log("mast")
         		data = data;
         		var j = data.photos.length;
-        		if (j==0) {
-        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
-        		}
+        		 if (j==0) {
+        			$("#pics").html("Rover did not take pictures with mast camera on sol "+onlySol+". Please pick a different sol.")
+        		 }
         		else {
 		       		for(var i=0; i<data.photos.length; i++){
 		       			console.log(data.photos[i]);
@@ -189,13 +189,13 @@ $(document).ready(function(){
 	});
 		
 		$("#chemcam1").click(function(){
-			$.getJSON(urlArray[3], function(data){
+			$.getJSON("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=CHEMCAM&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", function(data){
         		console.dir(data);  //idk if this works
         		data = data;
         		var j = data.photos.length;
-        		if (j==0) {
-        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
-        		}
+        		 if (j==0) {
+        		 	$("#pics").html("Rover did not take pictures with chemcam camera on sol "+onlySol+". Please pick a different sol.")
+        		 }
         		else {
 		       		for(var i=0; i<data.photos.length; i++){
 		       			console.log(data.photos[i]);
@@ -214,14 +214,14 @@ $(document).ready(function(){
     	});
 	});
 	
-		$("#mahli").click(function(){
-			$.getJSON(urlArray[4], function(data){
+		$("#mahli1").click(function(){
+			$.getJSON("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MAHLI&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", function(data){
         		console.dir(data);  //idk if this works
         		data = data;
         		var j = data.photos.length;
-        		if (j==0) {
-        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
-        		}
+        		 if (j==0) {
+        		 	$("#pics").html("Rover did not take pictures with mahli camera on sol "+onlySol+". Please pick a different sol or camera.")
+        		 }
         		else {
 		       		for(var i=0; i<data.photos.length; i++){
 		       			console.log(data.photos[i]);
@@ -240,14 +240,14 @@ $(document).ready(function(){
     	});
 	});
 		
-		$("#mardi").click(function(){
-			$.getJSON(urlArray[5], function(data){
+		$("#mardi1").click(function(){
+			$.getJSON("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=MARDI&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", function(data){
         		console.dir(data);  //idk if this works
         		data = data;
         		var j = data.photos.length;
-        		if (j==0) {
-        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
-        		}
+        		 if (j==0) {
+        		 	$("#pics").html("Rover did not take pictures with mardi camera on sol "+onlySol+". Please pick a different sol.")
+        		 }
         		else {
 		       		for(var i=0; i<data.photos.length; i++){
 		       			console.log(data.photos[i]);
@@ -266,14 +266,14 @@ $(document).ready(function(){
     	});
 	});
 	
-		$("#navcam").click(function(){
-			$.getJSON(urlArray[6], function(data){
+		$("#navcam1").click(function(){
+			$.getJSON("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol="+onlySol+"&camera=NAVCAM&api_key=lVCrmISPpppZ2vtFgZAgrRfotnPrNmncgCfN01jQ", function(data){
         		console.dir(data);  //idk if this works
         		data = data;
         		var j = data.photos.length;
-        		if (j==0) {
-        			$("#pics").html("Rover did not take pictures with "+camera+" camera on sol "+solNumber+". Please pick a different sol or camera.")
-        		}
+        		 if (j==0) {
+        		 	$("#pics").html("Rover did not take pictures with navcam camera on sol "+onlySol+". Please pick a different sol or camera.")
+        		 }
         		else {
 		       		for(var i=0; i<data.photos.length; i++){
 		       			console.log(data.photos[i]);
@@ -290,6 +290,7 @@ $(document).ready(function(){
 	       		})
 	       	}
     	});
+	});
 	});
 
 
