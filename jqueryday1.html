@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="jqueryday1-css.css">
+</head>
+<body>
+	<script type="text/javascript"> 
+		$(document).ready(function(){
+			console.log("document is ready");
+			console.log($("#test"));
+			$("#divImg").html("<img src='0i52kkko7lyz.jpg'>").hide();
+			$("#divImg>img").height(300)
+			// $("#outsideDiv").height(300)
+			$("#button").click(function(){
+				$("#divImg").fadeToggle({duration:2000, easing:'swing'});
+					if($("#span").html()=="add img"){
+						$("#span").html('take away img');
+					}
+					else 
+					{
+						$("#span").html('add img');
+					}
+			}).hide().delay(1000).fadeIn();
+			$.getJSON("http://noobpool.com/api/accounts/0x4dbd2f542144218c56667ac6003055673623f13b",
+        function(data){
+        	console.log(data);
+        	for (var i = 0; i < data.payments.length; i++){
+        		console.log(data.payments[i]);
+        	
+        		$("#jsonTest").append('<p>' + "<span class='names'> amount: </span>" + JSON.stringify(data.payments[i].amount) + "<span class='names'> timestamp: </span>" + JSON.stringify(data.payments[i].timestamp) + "<span class='names'> tx: </span>" + "<a href='https://etherscan.io/address/0x4dbd2f542144218c56667ac6003055673623f13b'>" + JSON.stringify(data.payments[i].tx) + "</a>" + '</p>');
+
+        	}
+        //  $("#jsonTest").html(JSON.stringify(data)); 
+          });
+});
+		
+		
+		
+	
+
+	</script>
+<!-- <div id="outsideDiv"> -->
+<div id="divImg"></div>
+<!-- </div> -->
+<button id="button" class="addImg"><span id="span">add img</span></button>
+</div>
+<div id="jsonTest"></div>
+</body>
+</html>

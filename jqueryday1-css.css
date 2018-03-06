@@ -1,0 +1,15 @@
+
+.addImg {
+   width: 200px; 
+   background-color: #999; 
+   /*z-index: 10; */
+   height: 83px;
+}
+
+#divImg {
+	height: 300px;
+}
+.names {
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+}
